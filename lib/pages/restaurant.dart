@@ -20,20 +20,42 @@ class Restaurant extends StatelessWidget{
         body: SafeArea(
           child: Column(
             children: [
-              SizedBox(
-                height: screenSize.height*0.3,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/sunshine-tree-terrace-01-new.jpg'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(1),
+                child: Image.asset('assets/images/sunshine-tree-terrace-01-new.jpg',
+                height: 150,
+                fit: BoxFit.cover,
+                )
+                )
+              ,
+              //_RestaurantImageCover(screenSize: screenSize),
               _RestaurantInfo(name: name),
               _ArrivallWindows()
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _RestaurantImageCover extends StatelessWidget {
+  const _RestaurantImageCover({
+    super.key,
+    required this.screenSize,
+  });
+
+  final Size screenSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: screenSize.height*0.3,
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/sunshine-tree-terrace-01-new.jpg'),
+            fit: BoxFit.cover,
           ),
         ),
       ),
