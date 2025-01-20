@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/pages/restaurant.dart';
+import 'package:restaurant_app/config/router/app_router.dart';  
 void main() {
   runApp(const MyApp());
 }
@@ -8,16 +8,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: appRouter,
       title: 'Restaurants',
       theme: ThemeData(useMaterial3: true,
       ),
-      home: const Restaurant(
-        id: 0001,
-        name: "Sunshine Tree Terrace",
-        parkName: "Magic Kingdom Park",
-        img: "/Users/joel.arraigada/development/Flutter/Projects/restaurants/restaurant_app/assets/images/sunshine-tree-terrace-01-new.jpg"
-      )
     );
   }
 }
