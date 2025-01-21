@@ -7,16 +7,18 @@ final appRouter = GoRouter(
   routes: [
     GoRoute(
        path: '/',
-       builder: (context, state) => HomeScreen(),
+       name: HomeScreen.name,
+       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
       path: '/restaurants',
-      builder: (context, state) => Restaurant(
-        id: 0001,
-        name: "Sunshine Tree Terrace",
-        parkName: "Magic Kingdom Park",
-        img: "/Users/joel.arraigada/development/Flutter/Projects/restaurants/restaurant_app/assets/images/sunshine-tree-terrace-01-new.jpg"
-      ),
+      name: RestaurantsScreen.name,
+      builder: (context, state) => const RestaurantsScreen(),
+    ),
+    GoRoute(
+      path: '/merchandiseStore',
+      name: MerchStore.name,
+      builder: (context, state) => const MerchStore(),
     ),
     
   ],
