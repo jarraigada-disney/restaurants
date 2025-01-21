@@ -45,41 +45,67 @@ class _CustomListTile extends StatelessWidget {
     return ListTile(
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(25),
-        // child: Image.asset(
-        //   fit: BoxFit.cover,
-        //   restaurantItem.restaurant.img,
-        //   width: 80,
-        //   ),
-      ),title: Card(
-        elevation: 0,
-        child: Column(
-          children: [
-            Row(
-              children: [ Image.asset(
-              fit: BoxFit.cover,
-              restaurantItem.restaurant.img,
-              width: 80,
-              ),
-                Column(
-                  children: [
-                    Text(restaurantItem.restaurant.title),
-                    Text(restaurantItem.restaurant.parkName),
-                    
-                  ],
-                ),
-              ],
-              
-            ),
-          ElevatedButton(onPressed: () {
+         child: Image.asset(
+           fit: BoxFit.cover,
+           restaurantItem.restaurant.img,
+           width: 80,
+           ),
+      ),title: Padding(
+        padding: const EdgeInsets.fromLTRB(10,5,10,10),
+        child: Card(
+          elevation: 0,
+          child: Column(
+            children: [
+              Row(
+                 children: [ 
+                 // Image.asset(
+                // fit: BoxFit.cover,
+                // restaurantItem.restnt.img,
+                // width: 80,
+                // ),
+                  Column(
+                    children: [
+                      Text(restaurantItem.restaurant.title),
+                      Text(restaurantItem.restaurant.parkName),
                       
-                    }, child: Text('Begin Order'))],
-        ),),
+                    ],
+                  ),
+                ],
+                
+              ),
+            ElevatedButton(onPressed: () {
+                        
+                      }, child: Text('Begin Order'))],
+          ),),
+      ),
       onTap: () {
-        context.push(restaurantItem.restaurant.link);
+        context.pushNamed("order_details",extra: {"restaurant_id":restaurantItem.restaurant.title});
       },
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // class Restaurant extends StatelessWidget{
 
