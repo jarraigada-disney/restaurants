@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/config/router/app_router.dart';   
+import 'package:restaurant_app/config/router/app_router.dart';
+import 'package:restaurant_app/config/theme/app_theme.dart';   
 void main() {
   runApp(const MyApp());
 }
@@ -12,9 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true,
-      
-      ),
+      theme: ThemeData(useMaterial3: true,),
     );
   }
 }

@@ -1,39 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:restaurant_app/screens/restaurants/restaurant_List/restaurant_details_screen.dart';
 import 'package:restaurant_app/screens/screens.dart';
+
+import '../../screens/restaurants/restaurant_List/restaurant_items.dart';
 
 // GoRouter configuration
 final appRouter = GoRouter(
   initialLocation: '/',
   routes: [
     GoRoute(
-       path: '/',
-       name: HomeScreen.name,
-       builder: (context, state) => const HomeScreen(),
+      path: '/',
+      name: HomeScreen.name,
+      builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
-      path: '/restaurants',
-      name: RestaurantsScreen.name,
-      builder: (context, state) => const RestaurantsScreen(), 
-      routes: [GoRoute(
-       path: 'orderDetail',
-       name: "order_details",
-       builder: (context, state) {
-        final data=state.extra as Map<String,String>;
-        return
-        Scaffold(
-        body: Center(
-            child: Text("Order Detail: ${data["restaurant_id"]}")
-        ),
-       )
-       ;}, 
-    ),]
-    ),
+        path: '/restaurants',
+        name: RestaurantsScreen.name,
+        builder: (context, state) => const RestaurantsScreen(),
+        routes: [
+          GoRoute(
+            path: 'restaurantDetails',
+            name: "restaurant_details_screen",
+            builder: (context, state) {
+              final data = state.extra as Map<String, dynamic>; // Cast to Map
+              final RestaurantItem restaurantItem = data['restaurantItem'];
+              return RestaurantDetailsScreen(restaurantItem: restaurantItem);
+              
+            }),
+        ]),
     GoRoute(
       path: '/merchandiseStore',
       name: MerchStore.name,
       builder: (context, state) => const MerchStore(),
     ),
-    
   ],
 );
