@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/config/theme/app_theme.dart';
+import 'package:restaurant_app/driver_adapter/data_sources/local_arrival_window_repository_imp.dart';
+import 'package:restaurant_app/driver_adapter/data_sources/remote_aw_data_source_imp.dart';
+import 'package:restaurant_app/driver_adapter/repositories/local_aw_repository_imp.dart';
 import 'package:restaurant_app/screens/restaurants/restaurant_List/restaurant_items.dart';
 
 class RestaurantDetailsScreen extends StatelessWidget {
@@ -30,51 +34,60 @@ class _Actions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final List<Map<String, dynamic>> items = [
-    {
-      'icon': Icons.mobile_friendly_rounded,
-      'text': "Begin Order",
-    },
-    {
-      'icon': Icons.location_pin,
-      'text': "Find on Map",
-    },
-    {
-      'icon': Icons.directions_walk_rounded,
-      'text': "Get Directions",
-    },
-    {
-      'icon': Icons.restaurant_rounded,
-      'text': "View Menu",
-    },
-    // Add more items as needed
-  ];
+      {
+        'icon': Icons.mobile_friendly_rounded,
+        'text': "Begin Order",
+      },
+      {
+        'icon': Icons.location_pin,
+        'text': "Find on Map",
+      },
+      {
+        'icon': Icons.directions_walk_rounded,
+        'text': "Get Directions",
+      },
+      {
+        'icon': Icons.restaurant_rounded,
+        'text': "View Menu",
+      },
+      // Add more items as needed
+    ];
     return Column(
       children: [
         SizedBox(width: 30),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-          mainAxisAlignment: MainAxisAlignment.center, // Center the row content
-          children: [
-            ...items.map((item) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10), // Add padding between items
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(item['icon'], color: Color.fromARGB(255, 37, 131, 238), size: 50),
-                  Text(item['text']),
-                ],
-              ),
-            )).toList(), // Convert the iterable to a list
-            SizedBox(width: 20),
-          ],
-            ),
+            mainAxisAlignment:
+                MainAxisAlignment.center, // Center the row content
+            children: [
+              ...items.expand((item) {
+                return [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(item['icon'],
+                            color: Color.fromARGB(255, 37, 131, 238), size: 50),
+                        Text(item['text']),
+                      ],
+                    ),
+                  ),
+                  VerticalDivider(
+                    width: 20,
+                    thickness: 1,
+                    color: Colors.grey,
+                  ),
+                ];
+              }).toList(), // Convert the iterable to a list
+            ],
+          ),
         ),
       ],
     );
-}
+  }
 }
 
 class _ArrivalWindow extends StatelessWidget {
@@ -84,7 +97,9 @@ class _ArrivalWindow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 20,),
+        SizedBox(
+          height: 20,
+        ),
         ListTile(
             title: Text(
                 style: TextStyle(fontWeight: FontWeight.w300),
@@ -104,10 +119,40 @@ class _AvailableWindows extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Column(children: [
-          SizedBox(height: 20,),
-          CircularProgressIndicator(color: Color.fromARGB(255, 37, 131, 238), strokeWidth: 3,backgroundColor: Colors.grey[400],),
-          SizedBox(height: 15,),
-          Divider(height: 2,thickness: 1,),
+      SizedBox(
+        height: 20,
+      ),
+      FutureBuilder(
+          future:
+          //Use Provider 
+              LocalArrivalWindowRepositoryImp(localDataSource: LocalAwDataSource(),remoteDataSource: RemoteAwDataSourceImp())
+                  .slotPeriod(restaurantId: ''),
+          builder: (context, builder) {
+            if(builder.hasError){
+              return Text('No windows available');
+            }
+            if (builder.hasData) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                    children: List.generate(builder.data!.length, (index) {
+                  return Text(builder.data![index]);
+                })),
+              );
+            }
+            return CircularProgressIndicator(
+              color: Color.fromARGB(255, 37, 131, 238),
+              strokeWidth: 3,
+              backgroundColor: Colors.grey[400],
+            );
+          }),
+      SizedBox(
+        height: 15,
+      ),
+      Divider(
+        height: 2,
+        thickness: 1,
+      ),
     ]));
   }
 }
@@ -134,8 +179,11 @@ class _restaurantInfo extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-      
-          Divider(height: 2,thickness: 1,),],
+        Divider(
+          height: 2,
+          thickness: 1,
+        ),
+      ],
     );
   }
 }
