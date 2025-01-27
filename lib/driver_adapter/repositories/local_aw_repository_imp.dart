@@ -24,7 +24,7 @@ class LocalArrivalWindowRepositoryImp extends ArrivalWindowRepository {
       list2 =[];
     }
     if(list1.isEmpty && list2.isEmpty){
-      throw Exception();
+      throw Exception('Local and remote sources are empty');
     }
     else{
       return [...list1, ...list2];
