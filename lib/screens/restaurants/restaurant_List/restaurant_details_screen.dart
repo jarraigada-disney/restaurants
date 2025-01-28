@@ -301,7 +301,8 @@ class _AvailableWindows extends StatelessWidget {
               //Use Provider
               LocalArrivalWindowRepositoryImp(
                       localDataSource: LocalAwDataSource(),
-                      remoteDataSource: RemoteAwDataSourceImp())
+                      //remoteDataSource: RemoteAwDataSourceImp()
+                      )
                   .slotPeriod(restaurantId: restaurantItemId),
           builder: (context, builder) {
             if (builder.hasError) {

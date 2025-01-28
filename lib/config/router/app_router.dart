@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:restaurant_app/screens/restaurants/restaurant_List/restaurant_details_screen.dart';
+// import 'package:restaurant_app/screens/restaurants/restaurant_List/restaurant_details_screen.dart';
 import 'package:restaurant_app/screens/screens.dart';
 
 import '../../screens/restaurants/restaurant_List/restaurant_items.dart';
 
 // GoRouter configuration
+
 final appRouter = GoRouter(
+
   initialLocation: '/',
   routes: [
     GoRoute(
@@ -20,14 +22,13 @@ final appRouter = GoRouter(
         builder: (context, state) => const RestaurantsScreen(),
         routes: [
           GoRoute(
-            path: 'restaurantDetails',
-            name: "restaurant_details_screen",
-            builder: (context, state) {
-              final data = state.extra as Map<String, dynamic>; // Cast to Map
-              final RestaurantItem restaurantItem = data['restaurantItem'];
-              return RestaurantDetailsScreen(restaurantItem: restaurantItem);
-              
-            }),
+              path: 'restaurantDetails',
+              name: "restaurant_details_screen",
+              builder: (context, state) {
+                final data = state.extra as Map<String, dynamic>; // Cast to Map
+                final RestaurantItem restaurantItem = data['restaurantItem'];
+                return RestaurantDetailsScreen(restaurantItem: restaurantItem);
+              }),
         ]),
     GoRoute(
       path: '/merchandiseStore',

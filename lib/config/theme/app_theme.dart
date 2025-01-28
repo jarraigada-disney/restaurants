@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+//Make it constant!
 const colorList = <Color>[
   Color.fromARGB(255, 37, 131, 238),
   Colors.teal,

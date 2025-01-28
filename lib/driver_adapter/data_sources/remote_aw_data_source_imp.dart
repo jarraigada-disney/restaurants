@@ -7,7 +7,9 @@ class RemoteAwDataSourceImp extends ArrivalWindowDataSource{
   Future<List<String>> slotPeriod({required String restaurantId}) async{
     //async Data 
     await Future.delayed(Duration(seconds: 2));
-    return mockSlotPeriodRemote;
+    return[] 
+    //mockSlotPeriodRemote
+    ;
   }
 
 }
