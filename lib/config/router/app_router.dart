@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 // import 'package:restaurant_app/screens/restaurants/restaurant_List/restaurant_details_screen.dart';
-import 'package:restaurant_app/screens/screens.dart';
+import 'package:restaurant_app/presentation/screens/screens.dart';
 
-import '../../screens/restaurants/restaurant_List/restaurant_items.dart';
+import '../../presentation/screens/restaurants/restaurant_List/restaurant_items.dart';
 
 // GoRouter configuration
 

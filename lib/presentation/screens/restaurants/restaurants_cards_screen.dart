@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_inspire_twdc/font_inspire_twdc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hyperion_components/hyperion_components.dart';
-import 'package:restaurant_app/screens/restaurants/restaurant_List/restaurant_items.dart';
+import 'package:restaurant_app/presentation/screens/restaurants/restaurant_List/restaurant_items.dart';
 
 class RestaurantsScreen extends StatelessWidget {
   static const String name = 'restaurant_screen';

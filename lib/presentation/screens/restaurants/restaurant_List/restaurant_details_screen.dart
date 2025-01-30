@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_inspire_twdc/font_inspire_twdc.dart';
 import 'package:hyperion_components/hyperion_components.dart';
 import 'package:restaurant_app/config/theme/app_theme.dart';
-import 'package:restaurant_app/driver_adapter/data_sources/local_arrival_window_repository_imp.dart';
-import 'package:restaurant_app/driver_adapter/data_sources/remote_aw_data_source_imp.dart';
-import 'package:restaurant_app/driver_adapter/repositories/local_aw_repository_imp.dart';
-import 'package:restaurant_app/screens/restaurants/restaurant_List/restaurant_items.dart';
+import 'package:restaurant_app/driver_adapter/repositories/aw_repository_imp.dart';
+import 'package:restaurant_app/driver_adapter/data_sources/aw_data_source_imp.dart';
+import 'package:restaurant_app/presentation/screens/restaurants/restaurant_List/restaurant_items.dart';
 
 class RestaurantDetailsScreen extends StatelessWidget {
   static const String name = 'restaurant_details_screen';
@@ -304,9 +303,7 @@ class _AvailableWindows extends StatelessWidget {
       FutureBuilder(
           future:
               //Use Provider
-              LocalArrivalWindowRepositoryImp(
-            localDataSource: LocalAwDataSource(),
-            //remoteDataSource: RemoteAwDataSourceImp()
+              AwRepositoryImp(dataSource: RemoteAwDataSourceImp()
           ).slotPeriod(restaurantId: restaurantItemId),
           builder: (context, builder) {
             if (builder.hasError) {
