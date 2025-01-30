@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_inspire_twdc/font_inspire_twdc.dart';
+import 'package:hyperion_components/hyperion_components.dart';
 import 'package:restaurant_app/config/theme/app_theme.dart';
 import 'package:restaurant_app/driver_adapter/data_sources/local_arrival_window_repository_imp.dart';
 import 'package:restaurant_app/driver_adapter/data_sources/remote_aw_data_source_imp.dart';
@@ -16,8 +18,8 @@ class RestaurantDetailsScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           body: SingleChildScrollView(
-            child: Column(
-                    children: [
+        child: Column(
+          children: [
             Image.asset(restaurantItem.restaurant.img),
             _restaurantInfo(restaurantItem: restaurantItem),
             _ArrivalWindow(restaurantItemId: restaurantItem.restaurant.id),
@@ -27,9 +29,9 @@ class RestaurantDetailsScreen extends StatelessWidget {
             _DiningExperience(),
             _TypeOfCuisine(),
             _Description()
-                    ],
-                  ),
-          )),
+          ],
+        ),
+      )),
     );
   }
 }
@@ -41,21 +43,25 @@ class _Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children:[
-        SizedBox(
-          height: 20,
-        ),
-        
-          Text('Hit it out of the park with American baseball favorites: hot dogs, mini corn dogs and French fries. Soft drinks are also available.',style: TextStyle(fontWeight: FontWeight.w400)),
-          Text('An Important Message',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 12)),
-          Text('Valid admission required. A theme park reservation may be required based on admission type.',style: TextStyle(fontWeight: FontWeight.w400)),
-        SizedBox(
-          height: 20,
-        ),
-        Divider(
-          height: 2,
-          thickness: 1,
-        ),
+    return Column(children: [
+      SizedBox(
+        height: 20,
+      ),
+      Text(
+          'Hit it out of the park with American baseball favorites: hot dogs, mini corn dogs and French fries. Soft drinks are also available.',
+          style: TextStyle(fontWeight: FontWeight.w400)),
+      Text('An Important Message',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+      Text(
+          'Valid admission required. A theme park reservation may be required based on admission type.',
+          style: TextStyle(fontWeight: FontWeight.w400)),
+      SizedBox(
+        height: 20,
+      ),
+      Divider(
+        height: 2,
+        thickness: 1,
+      ),
     ]);
   }
 }
@@ -72,9 +78,9 @@ class _TypeOfCuisine extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        
-        Text('Type of cuisine',style: TextStyle(fontWeight: FontWeight.w300)),
-        Text('American',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18)),
+        Text('Type of cuisine', style: TextStyle(fontWeight: FontWeight.w300)),
+        Text('American',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
         SizedBox(
           height: 20,
         ),
@@ -94,21 +100,20 @@ class _DiningExperience extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children:[
-        SizedBox(
-          height: 20,
-        ),
-        
-          Text('Lunch And Dinner',style: TextStyle(fontWeight: FontWeight.w300)),
-          Text('Quick Service Restaurant',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18)),
-        SizedBox(
-          height: 20,
-        ),
-        Divider(
-          height: 2,
-          thickness: 1,
-        ),
+    return Column(children: [
+      SizedBox(
+        height: 20,
+      ),
+      Text('Lunch And Dinner', style: TextStyle(fontWeight: FontWeight.w300)),
+      Text('Quick Service Restaurant',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+      SizedBox(
+        height: 20,
+      ),
+      Divider(
+        height: 2,
+        thickness: 1,
+      ),
     ]);
   }
 }
@@ -125,7 +130,7 @@ class _DiningPlans extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        Text('Accepted Dining Plans'),
+        HyperionAccordion(titleLabel: 'Accepted Dining Plans', children: []),
         SizedBox(
           height: 20,
         ),
@@ -139,12 +144,8 @@ class _DiningPlans extends StatelessWidget {
 }
 
 class _RestaurantHours extends StatelessWidget {
-
   final RestaurantItem restaurantItem;
-  const _RestaurantHours({
-    super.key,
-    required this.restaurantItem
-  });
+  const _RestaurantHours({super.key, required this.restaurantItem});
 
   @override
   Widget build(BuildContext context) {
@@ -154,10 +155,17 @@ class _RestaurantHours extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        Text('Lunch And Dinner',style: TextStyle(fontWeight: FontWeight.w300)), // Bring from restaurantItem
-        Text('10:30 to 21:45',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-        Text('\$14.99 and under per adult',style: TextStyle(fontWeight: FontWeight.w400)),
-        Text('Quick Service Restaurant',style: TextStyle(fontWeight: FontWeight.w400)),
+        Text('Lunch And Dinner',
+            style: TextStyle(
+                fontWeight: FontWeight.w300)), // Bring from restaurantItem
+        Text(
+          '10:30 to 21:45',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        ),
+        Text('\$14.99 and under per adult',
+            style: TextStyle(fontWeight: FontWeight.w400)),
+        Text('Quick Service Restaurant',
+            style: TextStyle(fontWeight: FontWeight.w400)),
         SizedBox(
           height: 20,
         ),
@@ -201,23 +209,23 @@ class _Actions extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            mainAxisAlignment:
-                MainAxisAlignment.center, // Center the row content
-            children: [
-              ...items.expand((item) {
-                return [
-                  _singleItem(item: item),
-                  VerticalDivider(
-                      //??????????????????????
-                      width: 20,
-                      thickness: 1,
-                      color: const Color.fromARGB(255, 190, 17, 17)),
-                ];
-              }).toList(), // Convert the iterable to a list
-            ],
+        Container(
+          margin: EdgeInsets.all(16),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                ...items.expand((item) {
+                  return [
+                    _singleItem(item: item),
+                    VerticalDivider(
+                        //??????????????????????
+                        width: 20,
+                        thickness: 1)
+                  ];
+                }).toList(), 
+              ],
+            ),
           ),
         ),
         SizedBox(
@@ -246,9 +254,9 @@ class _singleItem extends StatelessWidget {
           Icon(
             item['icon'],
             color: colorList.first,
-            size: 50,
+            size: 45,
           ),
-          Text(item['text']),
+          Text(item['text'],style: InspireTextStyle.t10_medium,),
         ],
       ),
     );
@@ -269,8 +277,7 @@ class _ArrivalWindow extends StatelessWidget {
         ),
         ListTile(
             title: Text(
-                style: TextStyle(fontWeight: FontWeight.w300),
-                "Select an Arrival window"),
+                style: InspireTextStyle.t8_light, "Select an Arrival window"),
             subtitle: _AvailableWindows(
               restaurantItemId: restaurantItemId,
             )),
@@ -292,18 +299,15 @@ class _AvailableWindows extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      SizedBox(
-        height: 20,
-      ),
+    return Column(
+    children: [
       FutureBuilder(
           future:
               //Use Provider
               LocalArrivalWindowRepositoryImp(
-                      localDataSource: LocalAwDataSource(),
-                      //remoteDataSource: RemoteAwDataSourceImp()
-                      )
-                  .slotPeriod(restaurantId: restaurantItemId),
+            localDataSource: LocalAwDataSource(),
+            //remoteDataSource: RemoteAwDataSourceImp()
+          ).slotPeriod(restaurantId: restaurantItemId),
           builder: (context, builder) {
             if (builder.hasError) {
               return Text('No windows available at the moment');
@@ -313,18 +317,24 @@ class _AvailableWindows extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                     children: List.generate(builder.data!.length, (index) {
-                  return ElevatedButton(
-                    child: Text(builder.data![index]),
-                    onPressed: () {},
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: HyperionButton.secondary(
+                      size: HyperionButtonSize.small,
+                      borderWidth: 2,
+                      label: builder.data![index],
+                      onPressed: () {},
+                    ),
                   );
                 })),
               );
             }
-            return CircularProgressIndicator(
-              color: Color.fromARGB(255, 37, 131, 238),
-              strokeWidth: 3,
-              backgroundColor: Colors.grey[400],
-            );
+            return HyperionProgressLoader();
+            // CircularProgressIndicator(
+            //   color: Color.fromARGB(255, 37, 131, 238),
+            //   strokeWidth: 3,
+            //   backgroundColor: Colors.grey[400],
+            // );
           }),
     ]);
   }
@@ -343,9 +353,14 @@ class _restaurantInfo extends StatelessWidget {
           height: 10,
         ),
         ListTile(
-          leading: Icon(Icons.mobile_friendly_rounded, size: 30),
+          //Row? to align icon with title
+          leading: Icon(
+            Icons.mobile_friendly_rounded,
+            size: 30,
+            color: HyperionColor.slate900,
+          ),
           title: Text(
-              style: TextStyle(fontWeight: FontWeight.w800),
+              style: InspireTextStyle.t6_heavy,
               restaurantItem.restaurant.title),
           subtitle: _LocationSubtitle(restaurantItem: restaurantItem),
         ),
@@ -374,8 +389,12 @@ class _LocationSubtitle extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(restaurantItem.restaurant.parkName),
-        Text(restaurantItem.restaurant.location)
+        Text(
+          restaurantItem.restaurant.parkName,
+          style: InspireTextStyle.t9_light,
+        ),
+        Text(restaurantItem.restaurant.location,
+            style: InspireTextStyle.t9_light)
       ],
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_inspire_twdc/font_inspire_twdc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hyperion_components/hyperion_components.dart';
 import 'package:restaurant_app/screens/restaurants/restaurant_List/restaurant_items.dart';
 
 class RestaurantsScreen extends StatelessWidget {
@@ -61,13 +63,17 @@ class _CustomListTile extends StatelessWidget {
         children: [
           ListTile(
               leading: _AvatarImage(restaurantItem: restaurantItem),
-              title: Text(restaurantItem.restaurant.title),
-              subtitle: Text(restaurantItem.restaurant.parkName),
+              title: Text(restaurantItem.restaurant.title,style: InspireTextStyle.t7_medium),
+              subtitle: Text(restaurantItem.restaurant.parkName,style: InspireTextStyle.t8_light,),
               onTap: () {
                 context.pushNamed("restaurant_details_screen",
                     extra: {'restaurantItem': restaurantItem});
-              }),
-          ElevatedButton(onPressed: () {}, child: Text('Begin Order')),
+              }
+              ),
+          HyperionButton.secondary(
+            label: 'Begin Order',
+            onPressed: () {},
+            ),
         ],
       ),
     );
@@ -83,7 +89,8 @@ class _AvatarImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipOval(
+    return 
+    ClipOval(
       child: Image.asset(
         fit: BoxFit.cover,
         restaurantItem.restaurant.img,

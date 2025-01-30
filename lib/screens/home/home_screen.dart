@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_inspire_twdc/font_inspire_twdc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:restaurant_app/config/menu/menu_items.dart';
 
@@ -45,7 +46,7 @@ class _CustomListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(menuItem.icon),
-      title: Text(menuItem.title),
+      title: Text(menuItem.title, style: InspireTextStyle.t7_black,),
       onTap: () {
         context.push (menuItem.link);
       },

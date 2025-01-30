@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:font_inspire_twdc/font_inspire_twdc.dart';
+import 'package:hyperion_components/hyperion_components.dart';
 
 
 //Make it constant!
 const colorList = <Color>[
-  Color.fromARGB(255, 37, 131, 238),
+  HyperionColor.blue700,
   Colors.teal,
   Colors.green,
   Colors.red,
@@ -32,6 +34,7 @@ class AppTheme {
     useMaterial3: true,
     brightness: isDarkmode ? Brightness.dark : Brightness.light,
     colorSchemeSeed: colorList[ selectedColor ],
+    fontFamily: InspireTextStyle().toString(),
     appBarTheme: const AppBarTheme(
       centerTitle: false
     ),
