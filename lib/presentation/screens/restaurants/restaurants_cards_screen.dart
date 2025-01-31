@@ -19,7 +19,7 @@ class RestaurantsScreen extends StatelessWidget {
 
 class _RestaurantsListView extends StatelessWidget {
   const _RestaurantsListView();
-
+ 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

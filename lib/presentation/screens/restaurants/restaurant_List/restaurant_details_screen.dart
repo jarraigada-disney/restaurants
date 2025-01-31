@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_inspire_twdc/font_inspire_twdc.dart';
 import 'package:hyperion_components/hyperion_components.dart';
 import 'package:restaurant_app/config/theme/app_theme.dart';
 import 'package:restaurant_app/driver_adapter/repositories/aw_repository_imp.dart';
 import 'package:restaurant_app/driver_adapter/data_sources/aw_data_source_imp.dart';
+import 'package:restaurant_app/presentation/providers/arrival_windows/aw_repository_provider.dart';
 import 'package:restaurant_app/presentation/screens/restaurants/restaurant_List/restaurant_items.dart';
 
 class RestaurantDetailsScreen extends StatelessWidget {
@@ -222,7 +224,7 @@ class _Actions extends StatelessWidget {
                         width: 20,
                         thickness: 1)
                   ];
-                }).toList(), 
+                }).toList(),
               ],
             ),
           ),
@@ -255,7 +257,10 @@ class _singleItem extends StatelessWidget {
             color: colorList.first,
             size: 45,
           ),
-          Text(item['text'],style: InspireTextStyle.t10_medium,),
+          Text(
+            item['text'],
+            style: InspireTextStyle.t10_medium,
+          ),
         ],
       ),
     );
@@ -275,11 +280,8 @@ class _ArrivalWindow extends StatelessWidget {
           height: 20,
         ),
         ListTile(
-            title: Text(
-                style: InspireTextStyle.t8_light, "Select an Arrival window"),
-            subtitle: _AvailableWindows(
-              restaurantItemId: restaurantItemId,
-            )),
+            title: Text(style: InspireTextStyle.t8_light, "Select an Arrival window"),
+            subtitle: _AvailableWindows(restaurantItemId: restaurantItemId,)),
         SizedBox(
           height: 10,
         ),
@@ -292,19 +294,19 @@ class _ArrivalWindow extends StatelessWidget {
   }
 }
 
-class _AvailableWindows extends StatelessWidget {
+
+class _AvailableWindows extends ConsumerWidget {
   final String restaurantItemId;
   const _AvailableWindows({required this.restaurantItemId});
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-    children: [
+  Widget build(BuildContext context, WidgetRef ref) {
+    
+    
+    return Column(children: [
       FutureBuilder(
-          future:
-              //Use Provider
-              AwRepositoryImp(dataSource: RemoteAwDataSourceImp()
-          ).slotPeriod(restaurantId: restaurantItemId),
+          future: AwRepositoryImp(dataSource: AwDataSourceImp())
+              .slotPeriod(restaurantId: restaurantItemId),
           builder: (context, builder) {
             if (builder.hasError) {
               return Text('No windows available at the moment');
@@ -327,14 +329,10 @@ class _AvailableWindows extends StatelessWidget {
               );
             }
             return HyperionProgressLoader();
-            // CircularProgressIndicator(
-            //   color: Color.fromARGB(255, 37, 131, 238),
-            //   strokeWidth: 3,
-            //   backgroundColor: Colors.grey[400],
-            // );
           }),
     ]);
   }
+  
 }
 
 class _restaurantInfo extends StatelessWidget {

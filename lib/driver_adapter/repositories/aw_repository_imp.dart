@@ -6,7 +6,7 @@ class AwRepositoryImp extends ArrivalWindowRepository{
 
 final ArrivalWindowDataSource dataSource;
 
-  AwRepositoryImp({required this.dataSource});
+  AwRepositoryImp( {required this.dataSource});
 
   @override
   Future<List<String>> slotPeriod({required String restaurantId}) async{
