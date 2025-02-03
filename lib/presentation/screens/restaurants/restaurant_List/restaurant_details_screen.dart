@@ -5,12 +5,13 @@ import 'package:hyperion_components/hyperion_components.dart';
 import 'package:restaurant_app/config/theme/app_theme.dart';
 import 'package:restaurant_app/driver_adapter/repositories/aw_repository_imp.dart';
 import 'package:restaurant_app/driver_adapter/data_sources/aw_data_source_imp.dart';
+import 'package:restaurant_app/entities/restaurant.dart';
 import 'package:restaurant_app/presentation/providers/arrival_windows/aw_repository_provider.dart';
 import 'package:restaurant_app/presentation/screens/restaurants/restaurant_List/restaurant_items.dart';
 
 class RestaurantDetailsScreen extends StatelessWidget {
   static const String name = 'restaurant_details_screen';
-  final RestaurantItem restaurantItem;
+  final Restaurant restaurantItem;
 
   const RestaurantDetailsScreen({super.key, required this.restaurantItem});
 
@@ -21,9 +22,9 @@ class RestaurantDetailsScreen extends StatelessWidget {
           body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.asset(restaurantItem.restaurant.img),
+            Image.asset(restaurantItem.img),
             _restaurantInfo(restaurantItem: restaurantItem),
-            _ArrivalWindow(restaurantItemId: restaurantItem.restaurant.id),
+            _ArrivalWindow(restaurantItemId: restaurantItem.id),
             _Actions(),
             _RestaurantHours(restaurantItem: restaurantItem),
             _DiningPlans(),
@@ -145,7 +146,7 @@ class _DiningPlans extends StatelessWidget {
 }
 
 class _RestaurantHours extends StatelessWidget {
-  final RestaurantItem restaurantItem;
+  final Restaurant restaurantItem;
   const _RestaurantHours({super.key, required this.restaurantItem});
 
   @override
@@ -336,7 +337,7 @@ class _AvailableWindows extends ConsumerWidget {
 }
 
 class _restaurantInfo extends StatelessWidget {
-  final RestaurantItem restaurantItem;
+  final Restaurant restaurantItem;
 
   const _restaurantInfo({super.key, required this.restaurantItem});
 
@@ -356,7 +357,7 @@ class _restaurantInfo extends StatelessWidget {
           ),
           title: Text(
               style: InspireTextStyle.t6_heavy,
-              restaurantItem.restaurant.title),
+              restaurantItem.title),
           subtitle: _LocationSubtitle(restaurantItem: restaurantItem),
         ),
         SizedBox(
@@ -377,7 +378,7 @@ class _LocationSubtitle extends StatelessWidget {
     required this.restaurantItem,
   });
 
-  final RestaurantItem restaurantItem;
+  final Restaurant restaurantItem;
 
   @override
   Widget build(BuildContext context) {
@@ -385,10 +386,10 @@ class _LocationSubtitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          restaurantItem.restaurant.parkName,
+          restaurantItem.parkName,
           style: InspireTextStyle.t9_light,
         ),
-        Text(restaurantItem.restaurant.location,
+        Text(restaurantItem.location,
             style: InspireTextStyle.t9_light)
       ],
     );

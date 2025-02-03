@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:restaurant_app/entities/restaurant.dart';
 // import 'package:restaurant_app/screens/restaurants/restaurant_List/restaurant_details_screen.dart';
 import 'package:restaurant_app/presentation/screens/screens.dart';
 
@@ -26,7 +27,7 @@ final appRouter = GoRouter(
               name: "restaurant_details_screen",
               builder: (context, state) {
                 final data = state.extra as Map<String, dynamic>; // Cast to Map
-                final RestaurantItem restaurantItem = data['restaurantItem'];
+                final Restaurant restaurantItem = data['restaurantItem'];
                 return RestaurantDetailsScreen(restaurantItem: restaurantItem);
               }),
         ]),

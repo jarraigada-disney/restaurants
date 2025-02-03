@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/presentation/screens/restaurants/restaurant.dart';
+import 'package:restaurant_app/entities/restaurant.dart';
 
 class RestaurantItem {
   final Restaurant restaurant;
