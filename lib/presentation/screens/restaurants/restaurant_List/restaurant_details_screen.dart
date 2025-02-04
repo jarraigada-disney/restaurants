@@ -6,8 +6,7 @@ import 'package:restaurant_app/config/theme/app_theme.dart';
 import 'package:restaurant_app/driver_adapter/repositories/aw_repository_imp.dart';
 import 'package:restaurant_app/driver_adapter/data_sources/aw_data_source_imp.dart';
 import 'package:restaurant_app/entities/restaurant.dart';
-import 'package:restaurant_app/presentation/providers/arrival_windows/aw_repository_provider.dart';
-import 'package:restaurant_app/presentation/screens/restaurants/restaurant_List/restaurant_items.dart';
+import 'package:restaurant_app/map/google_map.dart';
 
 class RestaurantDetailsScreen extends StatelessWidget {
   static const String name = 'restaurant_details_screen';
@@ -27,7 +26,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
             _ArrivalWindow(restaurantItemId: restaurantItem.id),
             _Actions(),
             _RestaurantHours(restaurantItem: restaurantItem),
-            _DiningPlans(),
+            _DiningPlans(restaurantItem.acceptedDiningPlans),
             _DiningExperience(),
             _TypeOfCuisine(),
             _Description()
@@ -36,6 +35,8 @@ class RestaurantDetailsScreen extends StatelessWidget {
       )),
     );
   }
+  
+  
 }
 
 class _Description extends StatelessWidget {
@@ -60,6 +61,7 @@ class _Description extends StatelessWidget {
       SizedBox(
         height: 20,
       ),
+      //MyMap(),
       Divider(
         height: 2,
         thickness: 1,
@@ -121,18 +123,26 @@ class _DiningExperience extends StatelessWidget {
 }
 
 class _DiningPlans extends StatelessWidget {
-  const _DiningPlans({
-    super.key,
-  });
+  
+
+
+  final List<String> acceptedDiningPlans;
+  const _DiningPlans(this.acceptedDiningPlans);
 
   @override
   Widget build(BuildContext context) {
+    
     return Column(
       children: [
         SizedBox(
           height: 20,
         ),
-        HyperionAccordion(titleLabel: 'Accepted Dining Plans', children: []),
+        HyperionAccordion( //Convert list of String to List of widgets
+          titleLabel: 'Accepted Dining Plans', 
+          children: acceptedDiningPlans.map((plan){
+            return Text(plan);
+          }).toList(),
+        ),
         SizedBox(
           height: 20,
         ),
@@ -157,16 +167,16 @@ class _RestaurantHours extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        Text('Lunch And Dinner',
+        Text(restaurantItem.menuType,
             style: TextStyle(
                 fontWeight: FontWeight.w300)), // Bring from restaurantItem
         Text(
-          '10:30 to 21:45',
+          restaurantItem.openTime +' to '+ restaurantItem.closeTime,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         ),
-        Text('\$14.99 and under per adult',
+        Text('\$ '+restaurantItem.price +  ' and under per adult',
             style: TextStyle(fontWeight: FontWeight.w400)),
-        Text('Quick Service Restaurant',
+        Text(restaurantItem.diningPlanType,
             style: TextStyle(fontWeight: FontWeight.w400)),
         SizedBox(
           height: 20,
@@ -329,7 +339,7 @@ class _AvailableWindows extends ConsumerWidget {
                 })),
               );
             }
-            return HyperionProgressLoader();
+            return CircularProgressIndicator( backgroundColor: Colors.grey);
           }),
     ]);
   }

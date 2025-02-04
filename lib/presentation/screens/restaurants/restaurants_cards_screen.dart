@@ -7,28 +7,43 @@ import 'package:restaurant_app/entities/restaurant.dart';
 import 'package:restaurant_app/presentation/providers/restaurants/restaurants_providers.dart';
 import 'package:restaurant_app/presentation/screens/restaurants/restaurant_List/restaurant_items.dart';
 
-class RestaurantsScreen extends StatelessWidget {
+class RestaurantsScreen extends ConsumerWidget {
   static const String name = 'restaurant_screen';
   const RestaurantsScreen({super.key});
 
 
   
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,ref) {
+    final child = ref.watch(restaurantController).when(data: (restaurants){ return ListView.builder(
+      itemCount: restaurants.length,
+      itemBuilder:(context, index) {
+        final restaurantItem = restaurants[index];
+        // Text(restaurantItem.title);
+        return _CustomListCard(restaurantItem: restaurantItem);
+      },
+      );}, 
+      error: (error,_){ return Text('Error');}, 
+      loading: (){return Center(child: HyperionProgressLoader());
+      });
     return Scaffold(
       appBar: AppBar(),
-      body: _RestaurantsListView(),
+      body: child,
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        ref.read(restaurantController.notifier).reset();
+      }),
     );
   }
 }
 
 
 class _RestaurantsListView extends ConsumerStatefulWidget  {
-  const _RestaurantsListView();
+  const _RestaurantsListView(this.reset);
+  final VoidCallback reset;
  
   Widget build(BuildContext context,WidgetRef ref) {
 
-
+    
     return Placeholder();
   }
   
@@ -38,29 +53,22 @@ class _RestaurantsListView extends ConsumerStatefulWidget  {
 }
 
 class _RestaurantsListViewState extends ConsumerState<_RestaurantsListView>{
-  @override
-  void initState() {
-    super.initState();
-    ref.read(getResturantsProviders.notifier).refreshList();
-  }
+
     @override
   Widget build(BuildContext context) {
 
-    final currentRestaurantList = ref.watch(getResturantsProviders);
-
-    if (currentRestaurantList.isEmpty) {
-    return Center(child: CircularProgressIndicator());
-  }
-
-
-    return ListView.builder(
-      itemCount: currentRestaurantList.length,
+    return ref.watch(restaurantController).when(data: (restaurants){ return ListView.builder(
+      itemCount: restaurants.length,
       itemBuilder:(context, index) {
-        final restaurantItem = currentRestaurantList[index];
+        final restaurantItem = restaurants[index];
         // Text(restaurantItem.title);
         return _CustomListCard(restaurantItem: restaurantItem);
       },
-      );
+      );}, 
+      error: (error,_){ return Text('Error');}, 
+      loading: (){return Center(child: HyperionProgressLoader());
+      });
+
   }
 }
 
@@ -96,7 +104,13 @@ class _CustomListTile extends StatelessWidget {
           ListTile(
               leading: _AvatarImage(restaurantItem: restaurantItem),
               title: Text(restaurantItem.title,style: InspireTextStyle.t7_medium),
-              subtitle: Text(restaurantItem.parkName,style: InspireTextStyle.t8_light,),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(restaurantItem.parkName,style: InspireTextStyle.t8_light,),
+                  Text(restaurantItem.location,style:InspireTextStyle.t8_light,)                 
+                ],
+              ),
               onTap: () {
                 context.pushNamed("restaurant_details_screen",
                     extra: {'restaurantItem': restaurantItem});
@@ -106,6 +120,13 @@ class _CustomListTile extends StatelessWidget {
             label: 'Begin Order',
             onPressed: () {},
             ),
+            SizedBox(
+          height: 10,
+        ),
+            Divider(
+          height: 2,
+          thickness: 1,
+        )
         ],
       ),
     );

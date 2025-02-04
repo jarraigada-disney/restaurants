@@ -1,7 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:restaurant_app/core/data_source/restaurants_data_source.dart';
 import 'package:restaurant_app/driver_adapter/mappers/restaurant_mapper.dart';
-import 'package:restaurant_app/driver_adapter/models/RestaurantMockDB/restaurant_from_restaurant_mock.dart';
 import 'package:restaurant_app/driver_adapter/models/RestaurantMockDB/restaurant_mock_DB_response.dart';
 import 'package:restaurant_app/entities/restaurant.dart';
 
@@ -24,7 +23,7 @@ class RestaurantMockDataSource  extends RestaurantsDataSource{
     final List<Restaurant> restaurantsList = restaurantMockResponse.map((restaurantMockResponse)=> RestaurantMapper.restaurantFromRestaurantMock(restaurantMockResponse)).toList(); 
 
     
-    
+    await Future.delayed(Duration(seconds: 3));
     return restaurantsList;
   }
 

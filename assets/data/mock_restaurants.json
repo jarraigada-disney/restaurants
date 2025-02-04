@@ -4,13 +4,69 @@
     "restaurantName":"Casey´s Corner",
     "parkName":"Magic Kingdom Park",
     "location":"Main Street, U.S.A.",
-    "img":"assets/images/caseys-corner-hotdog-chili-cheese-deluxe-16x9.jpg"
+    "img":"assets/images/caseys-corner-hotdog-chili-cheese-deluxe-16x9.jpg",
+    "openTime":"10:30",
+    "closeTime":"20:00",
+    "price":"14.99",
+    "menuType":"Lunch And Dinner",
+    "diningPlanType":"Quick ServiceRestaurant",
+    "acceptedDiningPlans":["2024 Disney Quick-Service Dining Plan","2024 Disney Dining Plan","2025 Disney Dining Plan"],
+    "typeofCuisine":"American"
   },
   {
     "restaurantId": "00002",
     "restaurantName":"Columbia Harbour House",
     "parkName":"Magic Kingdom Park",
     "location":"Main Street, U.S.A.",
-    "img":"assets/images/columbia-harbour-house-gallery06.jpg"
+    "img":"assets/images/columbia-harbour-house-gallery06.jpg",
+    "openTime":"09:30",
+    "closeTime":"21:00",
+    "price":"15.99",
+    "menuType":"Lunch And Dinner",
+    "diningPlanType":"Quick ServiceRestaurant",
+    "acceptedDiningPlans":["2024 Disney Quick-Service Dining Plan","2024 Disney Dining Plan","2025 Disney Dining Plan"],
+    "typeofCuisine":"American"
+  },
+  {
+    "restaurantId": "00003",
+    "restaurantName":"Cosmic Ray's Starlight Café",
+    "parkName":"Magic Kingdom Park",
+    "location":"Tomorrowland",
+    "img":"assets/images/cosmic-rays-double-bacon-cheeseburger.jpg",
+    "openTime":"10:30",
+    "closeTime":"21:00",
+    "price":"14.99",
+    "menuType":"Lunch And Dinner",
+    "diningPlanType":"Quick ServiceRestaurant",
+    "acceptedDiningPlans":["2024 Disney Quick-Service Dining Plan","2024 Disney Dining Plan","2025 Disney Dining Plan"],
+    "typeofCuisine":"American"
+  },
+  {
+    "restaurantId": "00004",
+    "restaurantName":"Pecos Bill Tall Tale Inn and Cafe",
+    "parkName":"Magic Kingdom Park",
+    "location":"Frontierland",
+    "img":"assets/images/Pecos_SteamedTamalewithCitrusChipotleChicken_STYLIZED_083024_0985_CJ.jpg",
+    "openTime":"10:30",
+    "closeTime":"20:00",
+    "price":"14.99",
+    "menuType":"Lunch And Dinner",
+    "diningPlanType":"Quick ServiceRestaurant",
+    "acceptedDiningPlans":["2024 Disney Quick-Service Dining Plan","2024 Disney Dining Plan","2025 Disney Dining Plan"],
+    "typeofCuisine":"Mexican"
+  },
+  {
+    "restaurantId": "00004",
+    "restaurantName":"Sunshine Tree Terrace",
+    "parkName":"Magic Kingdom Park",
+    "location":"Adventureland",
+    "img":"assets/images/sunshine-tree-terrace-01-new.jpg",
+    "openTime":"10:00",
+    "closeTime":"20:00",
+    "price":"14.99",
+    "menuType":"Snack",
+    "diningPlanType":"Quick ServiceRestaurant",
+    "acceptedDiningPlans":["2024 Disney Quick-Service Dining Plan","2024 Disney Dining Plan","2025 Disney Dining Plan"],
+    "typeofCuisine":"American"
   }
 ]
