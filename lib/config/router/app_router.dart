@@ -4,7 +4,6 @@ import 'package:restaurant_app/entities/restaurant.dart';
 // import 'package:restaurant_app/screens/restaurants/restaurant_List/restaurant_details_screen.dart';
 import 'package:restaurant_app/presentation/screens/screens.dart';
 
-import '../../presentation/screens/restaurants/restaurant_List/restaurant_items.dart';
 
 // GoRouter configuration
 

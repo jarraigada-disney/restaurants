@@ -1,12 +1,8 @@
 import 'dart:async';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_app/core/repositories/restaurant_repository.dart';
 import 'package:restaurant_app/entities/restaurant.dart';
 import 'package:restaurant_app/presentation/providers/restaurants/restaurants_repo_provider.dart';
-import 'package:restaurant_app/presentation/screens/restaurants/restaurant_List/restaurant_items.dart';
-
 
 //Basic FutureProvider 
 // final getResturantsProviders = FutureProvider<List<Restaurant>>((ref) async {

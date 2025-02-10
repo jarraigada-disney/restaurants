@@ -3,7 +3,7 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_app/core/repositories/restaurant_repository.dart';
-import 'package:restaurant_app/driver_adapter/data_sources/restaurant_mock_data_source.dart';
+import 'package:restaurant_app/driver_adapter/data_sources/restaurant_api_mock_imp.dart';
 import 'package:restaurant_app/driver_adapter/repositories/restaurant_repo_imp.dart';
 
 
@@ -11,6 +11,6 @@ import 'package:restaurant_app/driver_adapter/repositories/restaurant_repo_imp.d
 final restaurantRepositoryProvider = Provider<RestaurantsRepository>((ref) {
   
   //The specific implementation i need to bring information ( in this case, the mock):
-  return RestaurantRepoImp(RestaurantMockDataSource());
-
+  // return RestaurantRepoImp(RestaurantMockDataSource());
+  return RestaurantRepoImp(RestaurantApiMockImp());
 });
