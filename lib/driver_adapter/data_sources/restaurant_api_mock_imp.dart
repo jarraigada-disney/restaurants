@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:restaurant_app/core/data_source/restaurants_data_source.dart';
 import 'package:restaurant_app/driver_adapter/mappers/restaurant_mapper.dart';
-import 'package:restaurant_app/driver_adapter/models/restaurant_Api_Mock/restaurant_api_response.dart';
 import 'package:restaurant_app/driver_adapter/models/restaurant_Api_Mock/restaurant_from_api.dart';
 import 'package:restaurant_app/entities/restaurant.dart';
 
